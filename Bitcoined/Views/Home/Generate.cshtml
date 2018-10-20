@@ -1,0 +1,17 @@
+﻿@using Newtonsoft.Json.Linq
+@using Newtonsoft.Json
+@model JObject
+
+@{
+    var transactions = JsonConvert.DeserializeObject<IEnumerable<string>>(Model["result"].ToString());
+}
+
+<div class="well">
+    <h2>Generated blocks</h2>
+    <ul>
+        @foreach (var t in transactions)
+        {
+            <li>@t</li>
+        }
+    </ul>
+</div>

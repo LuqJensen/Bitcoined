@@ -1,0 +1,40 @@
+﻿@using Newtonsoft.Json.Linq
+@using Newtonsoft.Json
+@using Bitcoined.Models
+@model JObject
+
+@{
+    var transactions = JsonConvert.DeserializeObject<IEnumerable<RootObject>>(Model["result"].ToString());
+}
+<div>
+    <h2>Unspent transactions</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Txid</th>
+                <th>Vout</th>
+                <th>Address</th>
+                <th>Amount</th>
+                <th>Confirmations</th>
+                <th>Spendable</th>
+                <th>Solvable</th>
+                <th>Safe</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var v in transactions)
+            {
+            <tr>
+                <td>@v.Txid</td>
+                <td>@v.Vout</td>
+                <td>@v.Address</td>
+                <td>@v.Amount</td>
+                <td>@v.Confirmations</td>
+                <td>@v.Spendable</td>
+                <td>@v.Solvable</td>
+                <td>@v.Safe</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

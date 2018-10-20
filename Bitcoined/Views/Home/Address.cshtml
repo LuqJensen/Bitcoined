@@ -1,0 +1,14 @@
+﻿@using Newtonsoft.Json.Linq
+@model JObject
+
+<h2>New address</h2>
+<address>
+    @Model["result"]<br />
+</address>
+
+<form class="form-inline" asp-controller="Home" , asp-action="SendToAddress" , method="post">
+    <label for="amount">Send bitcoins to this address</label>
+    <input id="amount" class="form-control" type="number" value="0" min="0" name="amount" />
+    <input name="address" value="@Model["result"]" hidden />
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
